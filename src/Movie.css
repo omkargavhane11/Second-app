@@ -1,0 +1,21 @@
+.movie_container{
+    width:280px;
+    text-align:left;
+}
+
+.movie_specs{
+    display:flex;
+    align-items: center;
+    justify-content:space-between;
+}
+
+.movie_poster{
+    height:400px;
+    width:280px;
+    object-fit: cover;
+}
+
+.movie_summary{
+    text-align:left;
+}
+

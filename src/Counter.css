@@ -1,0 +1,15 @@
+.Counter{
+    /* padding:50px; */
+    /* background-color: aqua; */
+    
+}
+
+.bt-sz-lg {
+    height: 30px;
+    width: auto;
+    font-size: 20px;
+    margin:5px;
+    align-items:center;
+    text-align:center;
+  }
+
