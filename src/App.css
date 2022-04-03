@@ -37,3 +37,16 @@
   }
 } */
 
+.add_movie_form{
+  display:flex;
+  flex-direction: column;
+  width:300px;
+  margin-bottom:30px;
+}
+
+.add_movie_form > input {
+  margin:5px;
+}
+.add_movie_form > button {
+  margin:5px;
+}

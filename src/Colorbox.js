@@ -7,7 +7,8 @@ export function Addcolor() {
     background: color,
     fontSize: "30px"
   };
-  const [colorList, setColorlist] = useState(["orange","yellow","teal"]);
+  const INITIAL_COLOR_LIST = ["orange","yellow","teal"];
+  const [colorList, setColorlist] = useState(INITIAL_COLOR_LIST);
 
   return (
     <>
