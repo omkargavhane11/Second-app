@@ -1,5 +1,12 @@
+*{
+  padding:0px;
+  margin:0px;
+}
 .App {
-  text-align: center;
+
+  text-align: left;
+  background-color: #ffffff;
+  /* margin-bottom: 30px; */
 }
 
 /* .App-logo {
@@ -36,7 +43,9 @@
     transform: rotate(360deg);
   }
 } */
-
+.navbar{
+  padding:20px;
+}
 .add_movie_form{
   display:flex;
   flex-direction: column;
@@ -49,4 +58,24 @@
 }
 .add_movie_form > button {
   margin:5px;
+}
+
+/* MovieDetails */
+
+.movie_detail{
+  width:70%;
+  display:flex;
+  flex-direction: column;
+  gap:10px;
+  /* margin-bottom: 10px; */
+
+}
+.movie_detail_spec{
+  display:flex;
+  justify-content: space-between;
+}
+
+.movie_trailer > .mui_back_button{
+  margin-top: 10px;
+  /* padding-top: 10px; */
 }

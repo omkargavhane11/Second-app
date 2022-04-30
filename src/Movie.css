@@ -1,11 +1,19 @@
 .movie_container{
     width:280px;
     text-align:left;
+    /* border:0.5px solid black; */
+    /* box-shadow: 5px 5px 5px 5px #888888; */
 }
 
 .movie_specs{
     display:flex;
     align-items: center;
+    justify-content:space-between;
+    padding:4px;
+}
+
+.movie_name_icon{
+    display:flex;
     justify-content:space-between;
 }
 
@@ -17,5 +25,10 @@
 
 .movie_summary{
     text-align:left;
+}
+
+.bottom_icon_container{
+    display:flex;
+    justify-content:space-between;
 }
 

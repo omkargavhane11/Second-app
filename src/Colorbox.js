@@ -10,9 +10,13 @@ export function Addcolor() {
   const INITIAL_COLOR_LIST = ["orange","yellow","teal"];
   const [colorList, setColorlist] = useState(INITIAL_COLOR_LIST);
 
+  const color_box_style = {
+    padding:"30px"
+  }
+
   return (
     <>
-    <div>
+    <div styles={color_box_style}>
       <input
         onChange={(e) => setColor(e.target.value)}
         style={styles}
@@ -35,8 +39,9 @@ function Colorbox({color}){
     background:color,
     alignitems:"center",
     margin:"5px",
+    padding:"10px",
   }
   return(
-    <div style={styless}>{color}</div>
+    <div className="colorbox_div" style={styless}>{color}</div>
   )
 }

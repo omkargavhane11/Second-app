@@ -1,27 +1,71 @@
 import { Counter } from "./Counter";
 import { useState } from "react";
+import IconButton from '@mui/material/IconButton';
+import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@mui/icons-material/Edit';
+import Badge from '@mui/material/Badge';
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import InfoIcon from '@mui/icons-material/Info';
+import { useNavigate } from "react-router-dom";
 
-export function Movie({ movie }) {
+export function Movie({ movie,id }) {
 
-  const [show,setShow] = useState(true);
+  const [show, setShow] = useState(true);
 
-  const paraStyle ={
+  const paraStyle = {
     display: show ? "block" : "none",
+    padding: "4px"
   }
   const styless = {
     color: movie.rating > 7.9 ? "green" : "red",
   };
 
+  const navigate = useNavigate();
+
   return (
     <div className="movie_container">
       <img className="movie_poster" src={movie.poster}></img>
+
       <div className="movie_specs">
-        <h2   className="movie_name">{movie.name}</h2>
-        <p style = {styless} className="movie_rating">⭐ {movie.rating}</p>
+        <div className="movie_name_icon">
+
+          <h2 className="movie_name">{movie.name}</h2>
+
+          <IconButton onClick={() => setShow(!show)} aria-label="delete" variant="standard" color="primary">
+            {show ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+          </IconButton>
+
+          <IconButton onClick={() => navigate(`/movies/${id}`)} aria-label="delete" variant="standard" color="primary">
+            <InfoIcon />
+          </IconButton>
+
+        </div>
+
+        <div className="rating_container">
+          <p style={styless} className="movie_rating">⭐ {movie.rating}</p>
+        </div>
       </div>
-      <button onClick={() => setShow(!show)} >Toggle</button>
-      <p  style={paraStyle} className="movie_summary">{movie.summary}</p>
-      <Counter />
+
+
+      <p style={paraStyle} className="movie_summary">{movie.summary}</p>
+
+      <div className="bottom_icon_container">
+        <div className="counter_container">
+          <Counter />
+        </div>
+
+        <div classNAme="icon_container">
+          <IconButton aria-label="delete" variant="standard" color="error">
+            <DeleteIcon />
+          </IconButton>
+
+          <IconButton aria-label="delete" variant="standard" color="secondary">
+            <EditIcon />
+          </IconButton>
+        </div>
+      </div>
+
     </div>
   );
 }   
