@@ -8,7 +8,7 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import InfoIcon from '@mui/icons-material/Info';
 import { useNavigate } from "react-router-dom";
 
-export function Movie({ movie, id, setMovieList, movielist }) {
+export function Movie({ movie, id, setMovieList, movielist, key }) {
 
   const [show, setShow] = useState(true);
 
@@ -21,6 +21,18 @@ export function Movie({ movie, id, setMovieList, movielist }) {
   };
 
   const navigate = useNavigate();
+
+  function res(array, num) {
+    let indd = num;
+    var news = [];
+    for (let i = 0; i < array.length; i++) {
+      if (i !== indd) {
+        news.push(array[i]);
+      }
+      // return new_arr;
+    }
+    return news;
+  }
 
   return (
     <div className="movie_container">
@@ -47,20 +59,10 @@ export function Movie({ movie, id, setMovieList, movielist }) {
 
         <div classNAme="icon_container">
           <IconButton
-            // ************************************************************
-
             onClick={() => {
-              
-              let temp_movielist = movielist;
-              temp_movielist[id] = movielist.slice(id,1);
-              // setMovieList(temp_movielist);
-              // console.log(movielist[id]);
-
-              console.log(temp_movielist);
+              let after_delete = res(movielist, id);
+              setMovieList(after_delete);
             }}
-
-
-            // *************************************************************
             aria-label="delete" variant="standard" color="error">
             <DeleteIcon />
           </IconButton>
