@@ -1,6 +1,5 @@
 import "./index.css";
 import "./App.css";
-import "./Welcome.css";
 import "./Movie.css";
 import { Addcolor } from "./Colorbox";
 import { NavLink, Routes, Route, Navigate } from "react-router-dom";
@@ -11,7 +10,6 @@ import { Notfoundpage } from "./Notfoundpage";
 import { MovieDetails } from "./MovieDetails";
 import { Add_Movie } from "./Add_Movie";
 import { Edit_Movie } from "./Edit_Movie";
-
 
 const INITIAL_MOVIE_LIST = [
   {
@@ -79,7 +77,6 @@ const INITIAL_MOVIE_LIST = [
     "trailer": "https://www.youtube.com/embed/NgsQ8mVkN8w"
   }
 ];
-
 
 export default function App() {
 
