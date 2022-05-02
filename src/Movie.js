@@ -61,7 +61,7 @@ export function Movie({ movie, id, setMovieList, movielist }) {
             <DeleteIcon />
           </IconButton>
 
-          <IconButton aria-label="delete" variant="standard" color="secondary">
+          <IconButton onClick={() => navigate(`/movies/edit/${id}`)} aria-label="delete" variant="standard" color="secondary">
             <EditIcon />
           </IconButton>
         </div>

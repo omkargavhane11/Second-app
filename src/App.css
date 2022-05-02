@@ -100,3 +100,21 @@
 .movie_trailer > .mui_back_button{
   margin-top: 10px;
 }
+
+.edit_movie_form{
+  display:flex;
+  flex-direction: column;
+  width:300px;
+  margin-bottom:30px;
+  background-color: rgb(205, 201, 201);
+  padding:15px;
+  border-radius: 10px;
+  /* height:300px; */
+}
+
+.edit_movie_form > input {
+  margin:5px;
+}
+.edit_movie_form > button {
+  margin:5px;
+}

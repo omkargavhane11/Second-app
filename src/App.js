@@ -4,7 +4,6 @@ import "./Welcome.css";
 import "./Movie.css";
 import { Welcome } from "./Welcome";
 import { Addcolor } from "./Colorbox";
-import { Movie } from "./Movie";
 import { NavLink, Routes, Route, useParams, useNavigate, Navigate } from "react-router-dom";
 import { useState } from "react";
 import Button from '@mui/material/Button';
@@ -12,6 +11,9 @@ import TextField from '@mui/material/TextField';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 // import Button from '@mui/material/Button';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+import { MovieList } from "./MovieList";
+import { Home } from "./Home";
+import { Notfoundpage } from "./Notfoundpage";
 
 
 const INITIAL_MOVIE_LIST = [
@@ -90,53 +92,31 @@ export default function App() {
   return (
     <div className="App">
       <div className="navbar">
-          <NavLink className="navlink" to="/">Home</NavLink>
-          <NavLink className="navlink" to="/movies">Movies</NavLink>
-          <NavLink className="navlink" to="/movies/add">Add Movie</NavLink>
-          <NavLink className="navlink" to="/colorbox">Color Box</NavLink>
+        <NavLink className="navlink" to="/">Home</NavLink>
+        <NavLink className="navlink" to="/movies">Movies</NavLink>
+        <NavLink className="navlink" to="/movies/add">Add Movie</NavLink>
+        <NavLink className="navlink" to="/colorbox">Color Box</NavLink>
 
       </div >
       <div className="Routes">
-      <Routes >
-        <Route path="/" element={<Home />} />
-        <Route path="/movies" element={<MovieList movielist={movielist} setMovieList={setMovieList} />} />
-        <Route path="/movies/:id" element={<MovieDetails movielist={movielist} />} />
-        <Route path="/movies/add" element={<Add_Movie movielist={movielist} setMovieList={setMovieList} />} />
-        <Route path="/colorbox" element={<Addcolor />} />
-        <Route path="*" element={<Navigate replace to="/404" />} />
-        <Route path="/404" element={<Notfoundpage />} />
-        <Route path="/films" element={<Navigate replace to="/movies" />} />
-      </Routes>
+        <Routes >
+          <Route path="/" element={<Home />} />
+          <Route path="/movies" element={<MovieList movielist={movielist} setMovieList={setMovieList} />} />
+          <Route path="/movies/:id" element={<MovieDetails movielist={movielist} />} />
+          <Route path="/movies/add" element={<Add_Movie movielist={movielist} setMovieList={setMovieList} />} />
+          <Route path="/movies/edit/:id" element={<Edit_Movie movielist={movielist} setMovieList={setMovieList} />} />
+          <Route path="/colorbox" element={<Addcolor />} />
+          <Route path="*" element={<Navigate replace to="/404" />} />
+          <Route path="/404" element={<Notfoundpage />} />
+          <Route path="/films" element={<Navigate replace to="/movies" />} />
+        </Routes>
       </div>
     </div>
   );
 
 }
-
-function Home() {
-  return (
-    <div>
-      <h1> Welcome to the Movie app</h1 >
-    </div>
-  );
-}
-
-function MovieList({ movielist, setMovieList }) {
-
-  return (
-    <div className="App">
-
-      <div className="movie_list">
-        {movielist.map((mv, index) => (<Movie key={index} movie={mv} id={index} movielist={movielist} setMovieList={setMovieList}/>))}
-      </div>
-
-    </div>
-  );
-}
-
 
 function MovieDetails({ movielist }) {
-
 
   const { id } = useParams();
   const movie = movielist[id];
@@ -159,15 +139,6 @@ function MovieDetails({ movielist }) {
       </Button>
     </div>
   )
-}
-
-function Notfoundpage() {
-  return (
-    <div>
-      <img src="https://cdn.dribbble.com/users/1175431/screenshots/6188233/404-error-dribbble-800x600.gif"></img>
-    </div>
-
-  );
 }
 
 function Add_Movie({ movielist, setMovieList }) {
@@ -207,6 +178,63 @@ function Add_Movie({ movielist, setMovieList }) {
           setMovieList([...movielist, newMovie]);
           navigate("/movies");
         }} >Add movie</Button>
+
+    </div>
+  )
+}
+
+function Edit_Movie({ movielist, setMovieList }) {
+
+  const [Name, setName] = useState("");
+  const [Poster, setPoster] = useState("");
+  const [Rating, setRating] = useState("");
+  const [Summary, setSummary] = useState("");
+  const [Trailer, setTrailer] = useState("");
+
+  const { id } = useParams();
+  const navigate = useNavigate();
+  const movie = movielist[id];
+
+
+
+
+  return (
+    <div className="edit_movie_form">
+
+      <TextField id="standard-basic" label="Name" variant="standard" onChange={(e) => setName(e.target.value)}
+        // value={movie.name} 
+        />
+      <TextField id="standard-basic" label="Poster" variant="standard" onChange={(e) => setPoster(e.target.value)}
+        // value={movie.poster}
+         />
+      <TextField id="standard-basic" label="Rating" variant="standard" onChange={(e) => setRating(e.target.value)}
+        // value={movie.rating} 
+        />
+      <TextField id="standard
+      -basic" label="Summary" variant="standard" onChange={(e) => setSummary(e.target.value)}
+        // value={movie.summary} 
+        />
+      <TextField id="standard-basic" label="Trailer" variant="standard" onChange={(e) => setTrailer(e.target.value)}
+        // value={movie.trailer} 
+        />
+
+
+
+      <Button variant="contained"
+        onClick={() => {
+          const newMovie = {
+            name: Name,
+            poster: Poster,
+            rating: Rating,
+            summary: Summary,
+            trailer: Trailer,
+          };
+          // setMovieList(newMovie);
+          // navigate("/movies");
+          // console.log(id);
+          console.log(movielist[id]);
+        }}
+      >Edit Movie</Button>
 
     </div>
   )
