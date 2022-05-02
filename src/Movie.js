@@ -48,12 +48,16 @@ export function Movie({ movie, id, setMovieList, movielist }) {
         <div classNAme="icon_container">
           <IconButton
             // ************************************************************
-            
+
             onClick={() => {
               
-              setMovieList(movielist.filter((movie) => movie.id !== id));
-              navigate("/movies");
-            }} 
+              let temp_movielist = movielist;
+              temp_movielist[id] = movielist.slice(id,1);
+              // setMovieList(temp_movielist);
+              // console.log(movielist[id]);
+
+              console.log(temp_movielist);
+            }}
 
 
             // *************************************************************

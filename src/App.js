@@ -197,11 +197,6 @@ function Edit_Movie({ movielist, setMovieList }) {
   const [Summary, setSummary] = useState(movie.summary);
   const [Trailer, setTrailer] = useState(movie.trailer);
 
-
-
-
-
-
   return (
     <div className="edit_movie_form">
 
@@ -234,7 +229,7 @@ function Edit_Movie({ movielist, setMovieList }) {
           let temp_movielist = movielist;
           temp_movielist[id] = newMovie;
           setMovieList(temp_movielist);
-          console.log(movielist[id]);
+          navigate(`/movies`);
         }}
       >Edit Movie</Button>
 
