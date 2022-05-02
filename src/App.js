@@ -89,22 +89,15 @@ export default function App() {
 
   return (
     <div className="App">
-      <ul className="navbar">
-        <li>
-          <NavLink to="/">Home</NavLink>
-        </li>
-        <li>
-          <NavLink to="/movies">Movies</NavLink>
-        </li>
-        <li>
-          <NavLink to="/movies/add">Add Movie</NavLink>
-        </li>
-        <li>
-          <NavLink to="/colorbox">Color Box</NavLink>
-        </li>
+      <div className="navbar">
+          <NavLink className="navlink" to="/">Home</NavLink>
+          <NavLink className="navlink" to="/movies">Movies</NavLink>
+          <NavLink className="navlink" to="/movies/add">Add Movie</NavLink>
+          <NavLink className="navlink" to="/colorbox">Color Box</NavLink>
 
-      </ul >
-      <Routes>
+      </div >
+      <div className="Routes">
+      <Routes >
         <Route path="/" element={<Home />} />
         <Route path="/movies" element={<MovieList movielist={movielist} setMovieList={setMovieList} />} />
         <Route path="/movies/:id" element={<MovieDetails movielist={movielist} />} />
@@ -114,6 +107,7 @@ export default function App() {
         <Route path="/404" element={<Notfoundpage />} />
         <Route path="/films" element={<Navigate replace to="/movies" />} />
       </Routes>
+      </div>
     </div>
   );
 
@@ -133,7 +127,7 @@ function MovieList({ movielist, setMovieList }) {
     <div className="App">
 
       <div className="movie_list">
-        {movielist.map((mv, index) => (<Movie key={index} movie={mv} id={index} />))}
+        {movielist.map((mv, index) => (<Movie key={index} movie={mv} id={index} movielist={movielist} setMovieList={setMovieList}/>))}
       </div>
 
     </div>
@@ -217,3 +211,5 @@ function Add_Movie({ movielist, setMovieList }) {
     </div>
   )
 }
+
+

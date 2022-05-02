@@ -3,13 +3,12 @@ import { useState } from "react";
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
-import Badge from '@mui/material/Badge';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import InfoIcon from '@mui/icons-material/Info';
 import { useNavigate } from "react-router-dom";
 
-export function Movie({ movie,id }) {
+export function Movie({ movie, id, setMovieList, movielist }) {
 
   const [show, setShow] = useState(true);
 
@@ -25,38 +24,40 @@ export function Movie({ movie,id }) {
 
   return (
     <div className="movie_container">
-      <img className="movie_poster" src={movie.poster}></img>
-
+      <img className="movie_poster" src={movie.poster} alt={movie.name}></img>
       <div className="movie_specs">
         <div className="movie_name_icon">
-
           <h2 className="movie_name">{movie.name}</h2>
-
           <IconButton onClick={() => setShow(!show)} aria-label="delete" variant="standard" color="primary">
             {show ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
           </IconButton>
-
           <IconButton onClick={() => navigate(`/movies/${id}`)} aria-label="delete" variant="standard" color="primary">
             <InfoIcon />
           </IconButton>
-
         </div>
-
         <div className="rating_container">
           <p style={styless} className="movie_rating">⭐ {movie.rating}</p>
         </div>
       </div>
-
-
       <p style={paraStyle} className="movie_summary">{movie.summary}</p>
-
       <div className="bottom_icon_container">
         <div className="counter_container">
           <Counter />
         </div>
 
         <div classNAme="icon_container">
-          <IconButton aria-label="delete" variant="standard" color="error">
+          <IconButton
+            // ************************************************************
+            
+            onClick={() => {
+              
+              setMovieList(movielist.filter((movie) => movie.id !== id));
+              navigate("/movies");
+            }} 
+
+
+            // *************************************************************
+            aria-label="delete" variant="standard" color="error">
             <DeleteIcon />
           </IconButton>
 
@@ -66,6 +67,6 @@ export function Movie({ movie,id }) {
         </div>
       </div>
 
-    </div>
+    </div >
   );
 }   
