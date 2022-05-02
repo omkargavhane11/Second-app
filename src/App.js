@@ -185,15 +185,19 @@ function Add_Movie({ movielist, setMovieList }) {
 
 function Edit_Movie({ movielist, setMovieList }) {
 
-  const [Name, setName] = useState("");
-  const [Poster, setPoster] = useState("");
-  const [Rating, setRating] = useState("");
-  const [Summary, setSummary] = useState("");
-  const [Trailer, setTrailer] = useState("");
-
   const { id } = useParams();
   const navigate = useNavigate();
   const movie = movielist[id];
+
+  console.log(movie);
+
+  const [Name, setName] = useState(movie.name);
+  const [Poster, setPoster] = useState(movie.poster);
+  const [Rating, setRating] = useState(movie.rating);
+  const [Summary, setSummary] = useState(movie.summary);
+  const [Trailer, setTrailer] = useState(movie.trailer);
+
+
 
 
 
@@ -202,23 +206,21 @@ function Edit_Movie({ movielist, setMovieList }) {
     <div className="edit_movie_form">
 
       <TextField id="standard-basic" label="Name" variant="standard" onChange={(e) => setName(e.target.value)}
-        // value={movie.name} 
-        />
+      value={Name}
+      />
       <TextField id="standard-basic" label="Poster" variant="standard" onChange={(e) => setPoster(e.target.value)}
-        // value={movie.poster}
-         />
+      value={Poster}
+      />
       <TextField id="standard-basic" label="Rating" variant="standard" onChange={(e) => setRating(e.target.value)}
-        // value={movie.rating} 
-        />
+      value={Rating} 
+      />
       <TextField id="standard
       -basic" label="Summary" variant="standard" onChange={(e) => setSummary(e.target.value)}
-        // value={movie.summary} 
-        />
+      value={Summary} 
+      />
       <TextField id="standard-basic" label="Trailer" variant="standard" onChange={(e) => setTrailer(e.target.value)}
-        // value={movie.trailer} 
-        />
-
-
+      value={Trailer} 
+      />
 
       <Button variant="contained"
         onClick={() => {
@@ -229,9 +231,9 @@ function Edit_Movie({ movielist, setMovieList }) {
             summary: Summary,
             trailer: Trailer,
           };
-          // setMovieList(newMovie);
-          // navigate("/movies");
-          // console.log(id);
+          let temp_movielist = movielist;
+          temp_movielist[id] = newMovie;
+          setMovieList(temp_movielist);
           console.log(movielist[id]);
         }}
       >Edit Movie</Button>
@@ -239,5 +241,8 @@ function Edit_Movie({ movielist, setMovieList }) {
     </div>
   )
 }
+
+
+
 
 
