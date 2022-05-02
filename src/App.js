@@ -17,7 +17,6 @@ import { Notfoundpage } from "./Notfoundpage";
 
 
 const INITIAL_MOVIE_LIST = [
-
   {
     "name": "RRR",
     "poster":
@@ -201,20 +200,20 @@ function Edit_Movie({ movielist, setMovieList }) {
     <div className="edit_movie_form">
 
       <TextField id="standard-basic" label="Name" variant="standard" onChange={(e) => setName(e.target.value)}
-      value={Name}
+        value={Name}
       />
       <TextField id="standard-basic" label="Poster" variant="standard" onChange={(e) => setPoster(e.target.value)}
-      value={Poster}
+        value={Poster}
       />
       <TextField id="standard-basic" label="Rating" variant="standard" onChange={(e) => setRating(e.target.value)}
-      value={Rating} 
+        value={Rating}
       />
       <TextField id="standard
       -basic" label="Summary" variant="standard" onChange={(e) => setSummary(e.target.value)}
-      value={Summary} 
+        value={Summary}
       />
       <TextField id="standard-basic" label="Trailer" variant="standard" onChange={(e) => setTrailer(e.target.value)}
-      value={Trailer} 
+        value={Trailer}
       />
 
       <Button variant="contained"
