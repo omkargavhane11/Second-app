@@ -60,11 +60,13 @@
 .navlink {
   text-decoration: none !important;
   color:rgb(0, 0, 0);
+  padding:5px;
 }
 
-.navlink :hover{
+.navlink:hover{
    text-decoration: underline;
-   color:white;
+   background-color:rgb(179, 179, 179);
+   border-radius: 10px;
 }
 
 .add_movie_form{
