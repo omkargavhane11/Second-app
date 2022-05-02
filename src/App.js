@@ -11,6 +11,7 @@ import { MovieDetails } from "./MovieDetails";
 import { Add_Movie } from "./Add_Movie";
 import { Edit_Movie } from "./Edit_Movie";
 
+
 const INITIAL_MOVIE_LIST = [
   {
     "name": "RRR",
