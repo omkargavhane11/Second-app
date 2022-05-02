@@ -2,18 +2,15 @@ import "./index.css";
 import "./App.css";
 import "./Welcome.css";
 import "./Movie.css";
-import { Welcome } from "./Welcome";
 import { Addcolor } from "./Colorbox";
-import { NavLink, Routes, Route, useParams, useNavigate, Navigate } from "react-router-dom";
+import { NavLink, Routes, Route, Navigate } from "react-router-dom";
 import { useState } from "react";
-import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
-import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
-// import Button from '@mui/material/Button';
-import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import { MovieList } from "./MovieList";
 import { Home } from "./Home";
 import { Notfoundpage } from "./Notfoundpage";
+import { MovieDetails } from "./MovieDetails";
+import { Add_Movie } from "./Add_Movie";
+import { Edit_Movie } from "./Edit_Movie";
 
 
 const INITIAL_MOVIE_LIST = [
@@ -114,129 +111,5 @@ export default function App() {
   );
 
 }
-
-function MovieDetails({ movielist }) {
-
-  const { id } = useParams();
-  const movie = movielist[id];
-
-  console.log(movie);
-  const navigate = useNavigate();
-
-  return (
-    <div className="movie_trailer">
-      <div className="movie_detail">
-        <iframe width="100%" height="470" src={movie.trailer}></iframe>
-        <div className="movie_detail_spec">
-          <h3>{movie.name}</h3>
-          <p>⭐{movie.rating}</p>
-        </div>
-        <p>{movie.summary}</p>
-      </div>
-      <Button onClick={() => navigate(`/movies`)} className="mui_back_button" variant="contained" startIcon={<ArrowBackIosNewIcon />}>
-        Back
-      </Button>
-    </div>
-  )
-}
-
-function Add_Movie({ movielist, setMovieList }) {
-
-  const [Name, setName] = useState("");
-  const [Poster, setPoster] = useState("");
-  const [Rating, setRating] = useState("");
-  const [Summary, setSummary] = useState("");
-  const [Trailer, setTrailer] = useState("");
-
-  const navigate = useNavigate();
-
-  return (
-    <div className="add_movie_form">
-
-      <TextField id="standard-basic" label="Name" variant="standard" onChange={(e) => setName(e.target.value)}
-        placeholder="Enter a Name" />
-      <TextField id="standard-basic" label="Poster" variant="standard" onChange={(e) => setPoster(e.target.value)}
-        placeholder="Enter a Poster" />
-      <TextField id="standard-basic" label="Rating" variant="standard" onChange={(e) => setRating(e.target.value)}
-        placeholder="Enter a Rating" />
-      <TextField id="standard-basic" label="Summary" variant="standard" onChange={(e) => setSummary(e.target.value)}
-        placeholder="Enter a Summary" />
-      <TextField id="standard-basic" label="Trailer" variant="standard" onChange={(e) => setTrailer(e.target.value)}
-        placeholder="Enter a Trailer" />
-
-
-      <Button variant="contained"
-        onClick={() => {
-          const newMovie = {
-            name: Name,
-            poster: Poster,
-            rating: Rating,
-            summary: Summary,
-            trailer: Trailer,
-          };
-          setMovieList([...movielist, newMovie]);
-          navigate("/movies");
-        }} >Add movie</Button>
-
-    </div>
-  )
-}
-
-function Edit_Movie({ movielist, setMovieList }) {
-
-  const { id } = useParams();
-  const navigate = useNavigate();
-  const movie = movielist[id];
-
-  console.log(movie);
-
-  const [Name, setName] = useState(movie.name);
-  const [Poster, setPoster] = useState(movie.poster);
-  const [Rating, setRating] = useState(movie.rating);
-  const [Summary, setSummary] = useState(movie.summary);
-  const [Trailer, setTrailer] = useState(movie.trailer);
-
-  return (
-    <div className="edit_movie_form">
-
-      <TextField id="standard-basic" label="Name" variant="standard" onChange={(e) => setName(e.target.value)}
-        value={Name}
-      />
-      <TextField id="standard-basic" label="Poster" variant="standard" onChange={(e) => setPoster(e.target.value)}
-        value={Poster}
-      />
-      <TextField id="standard-basic" label="Rating" variant="standard" onChange={(e) => setRating(e.target.value)}
-        value={Rating}
-      />
-      <TextField id="standard
-      -basic" label="Summary" variant="standard" onChange={(e) => setSummary(e.target.value)}
-        value={Summary}
-      />
-      <TextField id="standard-basic" label="Trailer" variant="standard" onChange={(e) => setTrailer(e.target.value)}
-        value={Trailer}
-      />
-
-      <Button variant="contained"
-        onClick={() => {
-          const newMovie = {
-            name: Name,
-            poster: Poster,
-            rating: Rating,
-            summary: Summary,
-            trailer: Trailer,
-          };
-          let temp_movielist = movielist;
-          temp_movielist[id] = newMovie;
-          setMovieList(temp_movielist);
-          navigate(`/movies`);
-        }}
-      >Edit Movie</Button>
-
-    </div>
-  )
-}
-
-
-
 
 
