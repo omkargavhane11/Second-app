@@ -2,60 +2,22 @@
   padding:0px;
   margin:0px;
 }
+
+/* --- APP --- */
+
 .App {
   padding:0px;
   text-align: left;
   background-color: #ffffff;
-  /* margin-bottom: 30px; */
 }
 
-/* .App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-} */
-.navbar{
-  padding:10px;
-  display:flex;
-  gap:15px;
-  font-size: 20px;
-  background-color: rgb(217, 216, 216);
-  color:rgb(6, 6, 6);
-  /* margin-bottom: 10px; */
-}
+/* --- ROUTES --- */
 
 .Routes {
   margin:10px;
 }
+
+/* --- NAVBAR --- */
 
 .navlink {
   text-decoration: none !important;
@@ -68,6 +30,8 @@
    background-color:rgb(179, 179, 179);
    border-radius: 10px;
 }
+
+/* --- ADD MOVIE --- */
 
 .add_movie_form{
   display:flex;
@@ -82,18 +46,20 @@
 .add_movie_form > input {
   margin:5px;
 }
+
 .add_movie_form > button {
   margin:5px;
 }
 
+/* --- MOVIE DETAILS PAGE OF TRAILER ---  */
 
 .movie_detail{
   width:70%;
   display:flex;
   flex-direction: column;
   gap:10px;
-
 }
+
 .movie_detail_spec{
   display:flex;
   justify-content: space-between;
@@ -103,6 +69,8 @@
   margin-top: 10px;
 }
 
+/* --- EDIT MOVIE --- */
+
 .edit_movie_form{
   display:flex;
   flex-direction: column;
@@ -111,12 +79,12 @@
   background-color: rgb(205, 201, 201);
   padding:15px;
   border-radius: 10px;
-  /* height:300px; */
 }
 
 .edit_movie_form > input {
   margin:5px;
 }
+
 .edit_movie_form > button {
   margin:5px;
 }
