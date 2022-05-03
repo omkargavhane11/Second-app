@@ -7,6 +7,14 @@ import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import InfoIcon from '@mui/icons-material/Info';
 import { useNavigate } from "react-router-dom";
+import * as React from 'react';
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+
 
 export function Movie({ movie, id, setMovieList, movielist, key }) {
 
@@ -35,44 +43,49 @@ export function Movie({ movie, id, setMovieList, movielist, key }) {
   }
 
   return (
-    <div className="movie_container">
-      <img className="movie_poster" src={movie.poster} alt={movie.name}></img>
-      <div className="movie_specs">
-        <div className="movie_name_icon">
-          <h2 className="movie_name">{movie.name}</h2>
-          <IconButton onClick={() => setShow(!show)} aria-label="delete" variant="standard" color="primary">
-            {show ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
-          </IconButton>
-          <IconButton onClick={() => navigate(`/movies/${id}`)} aria-label="delete" variant="standard" color="primary">
-            <InfoIcon />
-          </IconButton>
-        </div>
-        <div className="rating_container">
-          <p style={styless} className="movie_rating">⭐ {movie.rating}</p>
-        </div>
-      </div>
-      <p style={paraStyle} className="movie_summary">{movie.summary}</p>
-      <div className="bottom_icon_container">
-        <div className="counter_container">
-          <Counter />
-        </div>
+    <div>
+      <Card sx={{ maxWidth: 280 }}>
+        <div className="movie_container">
+          <img className="movie_poster" src={movie.poster} alt={movie.name}></img>
+          <div className="movie_specs">
+            <div className="movie_name_icon">
+              <h2 className="movie_name">{movie.name}</h2>
+              <IconButton onClick={() => setShow(!show)} aria-label="delete" variant="standard" color="primary">
+                {show ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+              </IconButton>
+              <IconButton onClick={() => navigate(`/movies/${id}`)} aria-label="delete" variant="standard" color="primary">
+                <InfoIcon />
+              </IconButton>
+            </div>
+            <div className="rating_container">
+              <p style={styless} className="movie_rating">⭐ {movie.rating}</p>
+            </div>
+          </div>
+          <p style={paraStyle} className="movie_summary">{movie.summary}</p>
+          <div className="bottom_icon_container">
+            <div className="counter_container">
+              <Counter />
+            </div>
 
-        <div classNAme="icon_container">
-          <IconButton
-            onClick={() => {
-              let after_delete = res(movielist, id);
-              setMovieList(after_delete);
-            }}
-            aria-label="delete" variant="standard" color="error">
-            <DeleteIcon />
-          </IconButton>
+            <div classNAme="icon_container">
+              <IconButton
+                onClick={() => {
+                  let after_delete = res(movielist, id);
+                  setMovieList(after_delete);
+                }}
+                aria-label="delete" variant="standard" color="error">
+                <DeleteIcon />
+              </IconButton>
 
-          <IconButton onClick={() => navigate(`/movies/edit/${id}`)} aria-label="delete" variant="standard" color="secondary">
-            <EditIcon />
-          </IconButton>
-        </div>
-      </div>
+              <IconButton onClick={() => navigate(`/movies/edit/${id}`)} aria-label="delete" variant="standard" color="secondary">
+                <EditIcon />
+              </IconButton>
+            </div>
+          </div>
 
-    </div >
+        </div >
+      </Card>
+
+    </div>
   );
 }   
