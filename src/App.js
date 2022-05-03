@@ -2,7 +2,7 @@ import "./index.css";
 import "./App.css";
 import "./Movie.css";
 import { Addcolor } from "./Colorbox";
-import { NavLink, Routes, Route, Navigate } from "react-router-dom";
+import { NavLink, Routes, Route, Navigate, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { MovieList } from "./MovieList";
 import { Home } from "./Home";
@@ -10,6 +10,14 @@ import { Notfoundpage } from "./Notfoundpage";
 import { MovieDetails } from "./MovieDetails";
 import { Add_Movie } from "./Add_Movie";
 import { Edit_Movie } from "./Edit_Movie";
+import * as React from 'react';
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+import IconButton from '@mui/material/IconButton';
+import MenuIcon from '@mui/icons-material/Menu';
 
 
 const INITIAL_MOVIE_LIST = [
@@ -82,16 +90,19 @@ const INITIAL_MOVIE_LIST = [
 export default function App() {
 
   const [movielist, setMovieList] = useState(INITIAL_MOVIE_LIST);
-
+  const navigate = useNavigate();
   return (
     <div className="App">
-      <div className="navbar">
-        <NavLink className="navlink" to="/">Home</NavLink>
-        <NavLink className="navlink" to="/movies">Movies</NavLink>
-        <NavLink className="navlink" to="/movies/add">Add Movie</NavLink>
-        <NavLink className="navlink" to="/colorbox">Color Box</NavLink>
+      <AppBar position="static">
+        <Toolbar>
 
-      </div >
+          <Button color="inherit" onClick={() => navigate(`/`)}>Home</Button>
+          <Button color="inherit" onClick={() => navigate(`/movies`)}>Movies</Button>
+          <Button color="inherit" onClick={() => navigate(`/movies/add`)}>Add Movie</Button>
+          <Button color="inherit" onClick={() => navigate(`/colorbox`)}>Color Box</Button>
+        </Toolbar>
+      </AppBar>
+      
       <div className="Routes">
         <Routes >
           <Route path="/" element={<Home />} />
