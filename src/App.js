@@ -2,8 +2,8 @@ import "./index.css";
 import "./App.css";
 import "./Movie.css";
 import { Addcolor } from "./Colorbox";
-import { NavLink, Routes, Route, Navigate, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
+import { useState,useEffect } from "react";
 import { MovieList } from "./MovieList";
 import { Home } from "./Home";
 import { Notfoundpage } from "./Notfoundpage";
@@ -12,17 +12,18 @@ import { Add_Movie } from "./Add_Movie";
 import { Edit_Movie } from "./Edit_Movie";
 import * as React from 'react';
 import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
+import Brightness4Icon from '@mui/icons-material/Brightness4';
+import Brightness7Icon from '@mui/icons-material/Brightness7';
+import Paper from '@mui/material/Paper';
+
 
 
 const INITIAL_MOVIE_LIST = [
   {
+    "id": "100",
     "name": "RRR",
     "poster":
       "https://englishtribuneimages.blob.core.windows.net/gallary-content/2021/6/Desk/2021_6$largeimg_977224513.JPG",
@@ -31,7 +32,7 @@ const INITIAL_MOVIE_LIST = [
     "trailer": "https://www.youtube.com/embed/f_vbAtFSEc0"
   },
   {
-
+    "id": "101",
     "name": "Iron man 2",
     "poster": "https://m.media-amazon.com/images/M/MV5BMTM0MDgwNjMyMl5BMl5BanBnXkFtZTcwNTg3NzAzMw@@._V1_FMjpg_UX1000_.jpg",
     "rating": 7,
@@ -39,7 +40,7 @@ const INITIAL_MOVIE_LIST = [
     "trailer": "https://www.youtube.com/embed/wKtcmiifycU"
   },
   {
-
+    "id": "102",
     "name": "No Country for Old Men",
     "poster": "https://upload.wikimedia.org/wikipedia/en/8/8b/No_Country_for_Old_Men_poster.jpg",
     "rating": 8.1,
@@ -47,7 +48,7 @@ const INITIAL_MOVIE_LIST = [
     "trailer": "https://www.youtube.com/embed/38A__WT3-o0"
   },
   {
-
+    "id": "103",
     "name": "Jai Bhim",
     "poster": "https://m.media-amazon.com/images/M/MV5BY2Y5ZWMwZDgtZDQxYy00Mjk0LThhY2YtMmU1MTRmMjVhMjRiXkEyXkFqcGdeQXVyMTI1NDEyNTM5._V1_FMjpg_UX1000_.jpg",
     "summary": "A tribal woman and a righteous lawyer battle in court to unravel the mystery around the disappearance of her husband, who was picked up the police on a false case",
@@ -55,7 +56,7 @@ const INITIAL_MOVIE_LIST = [
     "trailer": "https://www.youtube.com/embed/nnXpbTFrqXA"
   },
   {
-
+    "id": "104",
     "name": "The Avengers",
     "rating": 8,
     "summary": "Marvel's The Avengers (classified under the name Marvel Avengers\n Assemble in the United Kingdom and Ireland), or simply The Avengers, is\n a 2012 American superhero film based on the Marvel Comics superhero team\n of the same name.",
@@ -63,7 +64,7 @@ const INITIAL_MOVIE_LIST = [
     "trailer": "https://www.youtube.com/embed/eOrNdBpGMv8"
   },
   {
-
+    "id": "105",
     "name": "Interstellar",
     "poster": "https://m.media-amazon.com/images/I/A1JVqNMI7UL._SL1500_.jpg",
     "rating": 8.6,
@@ -71,7 +72,7 @@ const INITIAL_MOVIE_LIST = [
     "trailer": "https://www.youtube.com/embed/zSWdZVtXT7E"
   },
   {
-
+    "id": "106",
     "name": "Baahubali",
     "poster": "https://flxt.tmsimg.com/assets/p11546593_p_v10_af.jpg",
     "rating": 8,
@@ -79,7 +80,7 @@ const INITIAL_MOVIE_LIST = [
     "trailer": "https://www.youtube.com/embed/sOEg_YZQsTI"
   },
   {
-
+    "id": "107",
     "name": "Ratatouille",
     "poster": "https://resizing.flixster.com/gL_JpWcD7sNHNYSwI1ff069Yyug=/ems.ZW1zLXByZC1hc3NldHMvbW92aWVzLzc4ZmJhZjZiLTEzNWMtNDIwOC1hYzU1LTgwZjE3ZjQzNTdiNy5qcGc=",
     "rating": 8,
@@ -90,41 +91,57 @@ const INITIAL_MOVIE_LIST = [
 
 export default function App() {
 
+  const [mode, setMode] = useState('dark');
+
   const theme = createTheme({
     palette: {
-      mode: 'dark',
+      mode: mode,
     },
   });
 
-  const [movielist, setMovieList] = useState(INITIAL_MOVIE_LIST);
+  const [movielist, setMovieList] = useState([]);
+
+ useEffect(() =>{
+  fetch("https://61d17cd5da87830017e5926e.mockapi.io/movies")
+  .then((res) => res.json())
+  .then((data) => setMovieList(data));
+ } , [])
+
+
   const navigate = useNavigate();
+
+
   return (
     <ThemeProvider theme={theme}>
-      <div className="App">
-        <AppBar position="static">
-          <Toolbar>
+      <Paper elevation={0} style={{ borderRadius: '0px', height: '100vh' }}>
+        <div className="App" >
+          <AppBar position="static">
+            <Toolbar>
 
-            <Button color="inherit" onClick={() => navigate(`/`)}>Home</Button>
-            <Button color="inherit" onClick={() => navigate(`/movies`)}>Movies</Button>
-            <Button color="inherit" onClick={() => navigate(`/movies/add`)}>Add Movie</Button>
-            <Button color="inherit" onClick={() => navigate(`/colorbox`)}>Color Box</Button>
-          </Toolbar>
-        </AppBar>
+              <Button color="inherit" onClick={() => navigate(`/`)}>Home</Button>
+              <Button color="inherit" onClick={() => navigate(`/movies`)}>Movies</Button>
+              <Button color="inherit" onClick={() => navigate(`/movies/add`)}>Add Movie</Button>
+              <Button color="inherit" onClick={() => navigate(`/colorbox`)}>Color Box</Button>
+              <Button variant="text" onClick={() => setMode((mode === 'dark' ? 'light' : 'dark'))} color="inherit">{(mode === 'light' ? <Brightness7Icon /> : <Brightness4Icon />)}{mode === 'dark' ? 'light mode' : 'dark mode'}</Button>
+            </Toolbar>
 
-        <div className="Routes">
-          <Routes >
-            <Route path="/" element={<Home />} />
-            <Route path="/movies" element={<MovieList movielist={movielist} setMovieList={setMovieList} />} />
-            <Route path="/movies/:id" element={<MovieDetails movielist={movielist} />} />
-            <Route path="/movies/add" element={<Add_Movie movielist={movielist} setMovieList={setMovieList} />} />
-            <Route path="/movies/edit/:id" element={<Edit_Movie movielist={movielist} setMovieList={setMovieList} />} />
-            <Route path="/colorbox" element={<Addcolor />} />
-            <Route path="*" element={<Navigate replace to="/404" />} />
-            <Route path="/404" element={<Notfoundpage />} />
-            <Route path="/films" element={<Navigate replace to="/movies" />} />
-          </Routes>
+          </AppBar>
+
+          <div className="Routes">
+            <Routes >
+              <Route path="/" element={<Home />} />
+              <Route path="/movies" element={<MovieList />} />
+              <Route path="/movies/:id" element={<MovieDetails movielist={movielist} />} />
+              <Route path="/movies/add" element={<Add_Movie movielist={movielist} setMovieList={setMovieList} />} />
+              <Route path="/movies/edit/:id" element={<Edit_Movie movielist={movielist} setMovieList={setMovieList} />} />
+              <Route path="/colorbox" element={<Addcolor />} />
+              <Route path="*" element={<Navigate replace to="/404" />} />
+              <Route path="/404" element={<Notfoundpage />} />
+              <Route path="/films" element={<Navigate replace to="/movies" />} />
+            </Routes>
+          </div>  
         </div>
-      </div>
+      </Paper>
     </ThemeProvider>
   );
 

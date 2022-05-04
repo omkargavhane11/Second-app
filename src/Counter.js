@@ -1,10 +1,14 @@
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import Badge from '@mui/material/Badge';
 
 export function Counter() {
   // let like = 0;
   const [like, setLike] = useState(0);
   const [dislike, setDislike] = useState(0);
+
+  useEffect((n) => {
+    console.log("Like is update:" ,like)}, [like]);
+
   return (
     <div className="Counter">
 
