@@ -5,7 +5,9 @@ export function Addcolor() {
   const [color, setColor] = useState("orange");
   const styles = {
     background: color,
-    fontSize: "30px"
+    fontSize: "30px",
+    width:"310px",
+    marginLeft:"6 px"
   };
   const INITIAL_COLOR_LIST = ["orange","yellow","teal"];
   const [colorList, setColorlist] = useState(INITIAL_COLOR_LIST);
@@ -35,7 +37,7 @@ export function Addcolor() {
 function Colorbox({color}){
   const styless ={
     height:"30px",
-    width:"200px",
+    width:"300px",
     background:color,
     alignitems:"center",
     margin:"5px",

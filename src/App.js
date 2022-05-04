@@ -18,6 +18,7 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 
 
 const INITIAL_MOVIE_LIST = [
@@ -89,34 +90,42 @@ const INITIAL_MOVIE_LIST = [
 
 export default function App() {
 
+  const theme = createTheme({
+    palette: {
+      mode: 'dark',
+    },
+  });
+
   const [movielist, setMovieList] = useState(INITIAL_MOVIE_LIST);
   const navigate = useNavigate();
   return (
-    <div className="App">
-      <AppBar position="static">
-        <Toolbar>
+    <ThemeProvider theme={theme}>
+      <div className="App">
+        <AppBar position="static">
+          <Toolbar>
 
-          <Button color="inherit" onClick={() => navigate(`/`)}>Home</Button>
-          <Button color="inherit" onClick={() => navigate(`/movies`)}>Movies</Button>
-          <Button color="inherit" onClick={() => navigate(`/movies/add`)}>Add Movie</Button>
-          <Button color="inherit" onClick={() => navigate(`/colorbox`)}>Color Box</Button>
-        </Toolbar>
-      </AppBar>
-      
-      <div className="Routes">
-        <Routes >
-          <Route path="/" element={<Home />} />
-          <Route path="/movies" element={<MovieList movielist={movielist} setMovieList={setMovieList} />} />
-          <Route path="/movies/:id" element={<MovieDetails movielist={movielist} />} />
-          <Route path="/movies/add" element={<Add_Movie movielist={movielist} setMovieList={setMovieList} />} />
-          <Route path="/movies/edit/:id" element={<Edit_Movie movielist={movielist} setMovieList={setMovieList} />} />
-          <Route path="/colorbox" element={<Addcolor />} />
-          <Route path="*" element={<Navigate replace to="/404" />} />
-          <Route path="/404" element={<Notfoundpage />} />
-          <Route path="/films" element={<Navigate replace to="/movies" />} />
-        </Routes>
+            <Button color="inherit" onClick={() => navigate(`/`)}>Home</Button>
+            <Button color="inherit" onClick={() => navigate(`/movies`)}>Movies</Button>
+            <Button color="inherit" onClick={() => navigate(`/movies/add`)}>Add Movie</Button>
+            <Button color="inherit" onClick={() => navigate(`/colorbox`)}>Color Box</Button>
+          </Toolbar>
+        </AppBar>
+
+        <div className="Routes">
+          <Routes >
+            <Route path="/" element={<Home />} />
+            <Route path="/movies" element={<MovieList movielist={movielist} setMovieList={setMovieList} />} />
+            <Route path="/movies/:id" element={<MovieDetails movielist={movielist} />} />
+            <Route path="/movies/add" element={<Add_Movie movielist={movielist} setMovieList={setMovieList} />} />
+            <Route path="/movies/edit/:id" element={<Edit_Movie movielist={movielist} setMovieList={setMovieList} />} />
+            <Route path="/colorbox" element={<Addcolor />} />
+            <Route path="*" element={<Navigate replace to="/404" />} />
+            <Route path="/404" element={<Notfoundpage />} />
+            <Route path="/films" element={<Navigate replace to="/movies" />} />
+          </Routes>
+        </div>
       </div>
-    </div>
+    </ThemeProvider>
   );
 
 }
