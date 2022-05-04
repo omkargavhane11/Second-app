@@ -18,6 +18,7 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
 import Paper from '@mui/material/Paper';
+import {API} from "./global"
 
 
 
@@ -91,7 +92,7 @@ const INITIAL_MOVIE_LIST = [
 
 export default function App() {
 
-  const [mode, setMode] = useState('dark');
+  const [mode, setMode] = useState('light');
 
   const theme = createTheme({
     palette: {
@@ -102,7 +103,7 @@ export default function App() {
   const [movielist, setMovieList] = useState([]);
 
  useEffect(() =>{
-  fetch("https://61d17cd5da87830017e5926e.mockapi.io/movies")
+  fetch(`${API}/movies`)
   .then((res) => res.json())
   .then((data) => setMovieList(data));
  } , [])
@@ -113,7 +114,7 @@ export default function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Paper elevation={0} style={{ borderRadius: '0px', height: '100vh' }}>
+      <Paper elevation={0} style={{ borderRadius: '0px', minheight: '100vh' }}>
         <div className="App" >
           <AppBar position="static">
             <Toolbar>
@@ -122,7 +123,7 @@ export default function App() {
               <Button color="inherit" onClick={() => navigate(`/movies`)}>Movies</Button>
               <Button color="inherit" onClick={() => navigate(`/movies/add`)}>Add Movie</Button>
               <Button color="inherit" onClick={() => navigate(`/colorbox`)}>Color Box</Button>
-              <Button variant="text" onClick={() => setMode((mode === 'dark' ? 'light' : 'dark'))} color="inherit">{(mode === 'light' ? <Brightness7Icon /> : <Brightness4Icon />)}{mode === 'dark' ? 'light mode' : 'dark mode'}</Button>
+              <Button variant="text" className="toggle" onClick={() => setMode((mode === 'light' ? 'dark' : 'light'))} color="inherit">{(mode === 'light' ? <Brightness7Icon /> : <Brightness4Icon />)}{mode === 'dark' ? 'dark mode' : 'light mode'}</Button>
             </Toolbar>
 
           </AppBar>
@@ -131,9 +132,9 @@ export default function App() {
             <Routes >
               <Route path="/" element={<Home />} />
               <Route path="/movies" element={<MovieList />} />
-              <Route path="/movies/:id" element={<MovieDetails movielist={movielist} />} />
-              <Route path="/movies/add" element={<Add_Movie movielist={movielist} setMovieList={setMovieList} />} />
-              <Route path="/movies/edit/:id" element={<Edit_Movie movielist={movielist} setMovieList={setMovieList} />} />
+              <Route path="/movies/:id" element={<MovieDetails  />} />
+              <Route path="/movies/add" element={<Add_Movie  />} />
+              <Route path="/movies/edit/:id" element={<Edit_Movie  />} />
               <Route path="/colorbox" element={<Addcolor />} />
               <Route path="*" element={<Navigate replace to="/404" />} />
               <Route path="/404" element={<Notfoundpage />} />

@@ -9,7 +9,7 @@ export function Edit_Movie({ movielist, setMovieList }) {
   const navigate = useNavigate();
   const movie = movielist[id];
 
-  console.log(movie);
+  // console.log(movie);
 
   const [Name, setName] = useState(movie.name);
   const [Poster, setPoster] = useState(movie.poster);
@@ -46,7 +46,7 @@ export function Edit_Movie({ movielist, setMovieList }) {
           setMovieList(temp_movielist);
           navigate(`/movies`);
         }}
-      >Edit Movie</Button>
+      >SAVE</Button>
 
     </div>
   );

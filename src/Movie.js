@@ -1,5 +1,5 @@
 import { Counter } from "./Counter";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
@@ -14,9 +14,11 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import { API } from "./global"
 
 
-export function Movie({ movie, id, setMovieList, movielist, key }) {
+
+export function Movie({ movie, id, key }) {
 
   const [show, setShow] = useState(true);
 
@@ -41,6 +43,13 @@ export function Movie({ movie, id, setMovieList, movielist, key }) {
     }
     return news;
   }
+
+  const getMovies = () => {
+    fetch(`${API}/movies`)
+  }
+
+  useEffect(() => getMovies(), [])
+
 
   return (
     <div>
@@ -68,11 +77,22 @@ export function Movie({ movie, id, setMovieList, movielist, key }) {
             </div>
 
             <div classNAme="icon_container">
-              <IconButton
+
+              {/* delete function when deleting data locally without data having any id to it */}
+              {/* <IconButton
                 onClick={() => {
                   let after_delete = res(movielist, id);
                   setMovieList(after_delete);
                 }}
+                aria-label="delete" variant="standard" color="error">
+                <DeleteIcon />
+              </IconButton> */}
+
+              {/* deleting data when using API data */}
+              <IconButton
+                onClick={() => {
+                  fetch(`${API}/movies/${id}`, { method: "DELETE", })
+                    .then(() => navigate("/movies") )}}
                 aria-label="delete" variant="standard" color="error">
                 <DeleteIcon />
               </IconButton>

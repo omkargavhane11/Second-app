@@ -2,8 +2,11 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
+import { API } from "./global"
 
-export function Add_Movie({ movielist, setMovieList }) {
+
+
+export function Add_Movie() {
 
   const [Name, setName] = useState("");
   const [Poster, setPoster] = useState("");
@@ -37,8 +40,15 @@ export function Add_Movie({ movielist, setMovieList }) {
             summary: Summary,
             trailer: Trailer,
           };
-          setMovieList([...movielist, newMovie]);
-          navigate("/movies");
+          // setMovieList([...movielist, newMovie]);
+          fetch(`${API}/movies`, {
+            method: "POST",
+            body: JSON.stringify(newMovie),
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }).then((data) => data.json())
+            .then(() => {navigate("/movies")});
         }}>Add movie</Button>
 
     </div>
