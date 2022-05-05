@@ -36,60 +36,60 @@ export function Add_Movie() {
     // setMovieList([...movielist, newMovie]);
 
     fetch(`${API}/movies`, {
-      method: "POST",/
+      method: "POST",
       body: JSON.stringify(newMovie),
       headers: {
-      "Content-Type": "application/json",
-    },
+        "Content-Type": "application/json",
+      },
     }).then((data) => data.json())
-    .then(() => { navigate("/movies") });
-}
+      .then(() => { navigate("/movies") });
+  }
 
-return (
-  <form onSubmit={formik.handleSubmit} className="add_movie_form">
-    <TextField
-      error={formik.touched.name && formik.errors.name}
-      helperText={formik.touched.name && formik.errors.name ? formik.errors.name : ""}
-      id="name" name="name"
-      onChange={formik.handleChange}
-      onBlur={formik.handleBlur}
-      value={formik.values.name}
-      label="Name" variant="standard" />
-    <TextField
-      error={formik.touched.poster && formik.errors.poster}
-      helperText={formik.touched.poster && formik.errors.poster ? formik.errors.poster : ""}
-      id="poster" name="poster"
-      onChange={formik.handleChange}
-      onBlur={formik.handleBlur}
-      value={formik.values.poster}
-      label="poster" variant="standard" />
-    <TextField
-      error={formik.touched.rating && formik.errors.rating}
-      helperText={formik.touched.rating && formik.errors.rating ? formik.errors.rating : ""}
-      id="rating" name="rating"
-      onChange={formik.handleChange}
-      onBlur={formik.handleBlur}
-      value={formik.values.rating}
-      label="rating" variant="standard" />
-    <TextField
-      error={formik.touched.summary && formik.errors.summary}
-      helperText={formik.touched.summary && formik.errors.summary ? formik.errors.summary : ""}
-      id="summary" name="summary"
-      onChange={formik.handleChange}
-      onBlur={formik.handleBlur}
-      value={formik.values.summary}
-      label="summary" variant="standard" />
-    <TextField
-      error={formik.touched.trailer && formik.errors.trailer}
-      helperText={formik.touched.trailer && formik.errors.trailer ? formik.errors.trailer : ""}
-      id="trailer" name="trailer"
-      onChange={formik.handleChange}
-      onBlur={formik.handleBlur}
-      value={formik.values.trailer}
-      label="trailer" variant="standard" />
-    <Button type="submit" variant="contained"
-    >Add movie</Button>
+  return (
+    <form onSubmit={formik.handleSubmit} className="add_movie_form">
+      <TextField
+        error={formik.touched.name && formik.errors.name}
+        helperText={formik.touched.name && formik.errors.name ? formik.errors.name : ""}
+        id="name" name="name"
+        onChange={formik.handleChange}
+        onBlur={formik.handleBlur}
+        value={formik.values.name}
+        label="Name" variant="standard" />
+      <TextField
+        error={formik.touched.poster && formik.errors.poster}
+        helperText={formik.touched.poster && formik.errors.poster ? formik.errors.poster : ""}
+        id="poster" name="poster"
+        onChange={formik.handleChange}
+        onBlur={formik.handleBlur}
+        value={formik.values.poster}
+        label="poster" variant="standard" />
+      <TextField
+        error={formik.touched.rating && formik.errors.rating}
+        helperText={formik.touched.rating && formik.errors.rating ? formik.errors.rating : ""}
+        id="rating" name="rating"
+        onChange={formik.handleChange}
+        onBlur={formik.handleBlur}
+        value={formik.values.rating}
+        label="rating" variant="standard" />
+      <TextField
+        error={formik.touched.summary && formik.errors.summary}
+        helperText={formik.touched.summary && formik.errors.summary ? formik.errors.summary : ""}
+        id="summary" name="summary"
+        onChange={formik.handleChange}
+        onBlur={formik.handleBlur}
+        value={formik.values.summary}
+        label="summary" variant="standard" />
+      <TextField
+        error={formik.touched.trailer && formik.errors.trailer}
+        helperText={formik.touched.trailer && formik.errors.trailer ? formik.errors.trailer : ""}
+        id="trailer" name="trailer"
+        onChange={formik.handleChange}
+        onBlur={formik.handleBlur}
+        value={formik.values.trailer}
+        label="trailer" variant="standard" />
+      <Button type="submit" variant="contained"
+      >Add movie</Button>
 
-  </form>
-);
+    </form>
+  );
 }
