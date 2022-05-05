@@ -1,13 +1,21 @@
 import { useParams, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
-
-export function Edit_Movie({ movielist, setMovieList }) {
+import {API} from "./global"
+export function Edit_Movie() {
 
   const { id } = useParams();
   const navigate = useNavigate();
-  const movie = movielist[id];
+  // const movie = movielist[id];
+
+  const [movie, setMovie] = useState({});
+
+  useEffect(() =>{
+   fetch(`${API}/movies/${id}`,{method:"GET"})
+   .then((res) => res.json())
+   .then((dat) => setMovie(dat));
+  } , [])
 
   // console.log(movie);
 
@@ -32,7 +40,7 @@ export function Edit_Movie({ movielist, setMovieList }) {
       <TextField id="standard-basic" label="Trailer" variant="standard" onChange={(e) => setTrailer(e.target.value)}
         value={Trailer} />
 
-      <Button variant="contained"
+      <Button variant="contained" color="success"
         onClick={() => {
           const newMovie = {
             name: Name,
@@ -41,9 +49,9 @@ export function Edit_Movie({ movielist, setMovieList }) {
             summary: Summary,
             trailer: Trailer,
           };
-          let temp_movielist = movielist;
-          temp_movielist[id] = newMovie;
-          setMovieList(temp_movielist);
+          let temp_movielist = movie;
+          temp_movielist = newMovie;
+          setMovie(temp_movielist);
           navigate(`/movies`);
         }}
       >SAVE</Button>
