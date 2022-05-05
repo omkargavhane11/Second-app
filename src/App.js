@@ -19,6 +19,7 @@ import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
 import Paper from '@mui/material/Paper';
 import {API} from "./global"
+import { BasicForm } from "./BasicForm";
 
 
 
@@ -138,6 +139,7 @@ export default function App() {
               <Route path="/colorbox" element={<Addcolor />} />
               <Route path="*" element={<Navigate replace to="/404" />} />
               <Route path="/404" element={<Notfoundpage />} />
+              <Route path="/basicform" element={<BasicForm />} />
               <Route path="/films" element={<Navigate replace to="/movies" />} />
             </Routes>
           </div>  
