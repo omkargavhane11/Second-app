@@ -3,10 +3,21 @@ import { useFormik } from 'formik';
 import * as yup from "yup";
 
 
-const formValidationSchema = yup.object({
-    password: yup.string().min(8, "Longer password needed").max(12, "keep pass max 12 characters").required(),
-    email: yup.string().min(8, "Longer email needed").required()
-})
+const formValidationSchema = yup.object(
+    {
+        email: yup.string()
+            .min(8, "Longer email needed")
+            .required()
+            .matches(/^ [A - Z0 -9._ % +-] +@[A - Z0 - 9. -]+\.[A - Z]{ 2,} $/i, "email pattern not matched 😒"),
+        password: yup
+            .string()
+            .min(8, "Longer password needed")
+            .max(12, "keep pass max 12 characters")
+            .required()
+            .matches(/^ [A - Z0 -9._ % +-] +@[A - Z0 - 9. -]+\.[A - Z]{ 2,} $/i, "password pattern not matched 😒"),
+
+
+    })
 
 export function BasicForm() {
     const formik = useFormik({
