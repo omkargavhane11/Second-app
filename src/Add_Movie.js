@@ -4,7 +4,14 @@ import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import { API } from "./global"
 
+// import { useFormik } from 'formik';
+// import * as yup from "yup";
 
+
+// const formValidationSchema = yup.object({
+//     password: yup.string().min(8, "Longer password needed").max(12, "keep pass max 12 characters").required(),
+//     email: yup.string().min(8, "Longer email needed").required()
+// })
 
 export function Add_Movie() {
 
@@ -48,7 +55,7 @@ export function Add_Movie() {
               "Content-Type": "application/json",
             },
           }).then((data) => data.json())
-            .then(() => {navigate("/movies")});
+            .then(() => { navigate("/movies") });
         }}>Add movie</Button>
 
     </div>
