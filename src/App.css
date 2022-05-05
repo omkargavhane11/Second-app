@@ -50,7 +50,7 @@
 .add_movie_form{
   display:flex;
   flex-direction: column;
-  width:300px;
+  width:400px;
   margin-bottom:30px;
   background-color: rgb(205, 201, 201);
   padding:15px;
@@ -88,7 +88,7 @@
 .edit_movie_form{
   display:flex;
   flex-direction: column;
-  width:300px;
+  width:400px;
   margin-bottom:30px;
   background-color: rgb(205, 201, 201);
   padding:15px;
@@ -100,5 +100,6 @@
 }
 
 .edit_movie_form > button {
+  /* margin-top: 10px; */
   margin:5px;
 }

@@ -6,8 +6,7 @@ export function Counter() {
   const [like, setLike] = useState(0);
   const [dislike, setDislike] = useState(0);
 
-  useEffect((n) => {
-    console.log("Like is update:" ,like)}, [like]);
+
 
   return (
     <div className="Counter">
