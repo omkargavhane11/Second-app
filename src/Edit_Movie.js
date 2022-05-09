@@ -23,15 +23,15 @@ export function Edit_Movie() {
 
   return (
 
-    movie ? <Edit_movie_form movie={movie} setMovie={setMovie}/> : "Loading..."
+    movie ? <Edit_movie_form movie={movie} setMovie={setMovie} /> : "Loading..."
   );
 }
 
 
 
-function Edit_movie_form({movie,setMovie}) {
+function Edit_movie_form({ movie, setMovie }) {
 
-  
+
   const navigate = useNavigate();
   const [Name, setName] = useState(movie.name);
   const [Poster, setPoster] = useState(movie.poster);
@@ -63,16 +63,16 @@ function Edit_movie_form({movie,setMovie}) {
             summary: Summary,
             trailer: Trailer,
           };
-          fetch(`${API}/movies/${movie.id}`, 
-          { 
-            method: "PUT",
-            body:JSON.stringify(newMovie),
-            headers:{
-              "Content-Type": "application/json"
-            },
-          })
-          .then((res) => res.json())
-          .then(() => navigate(`/movies`));
+          fetch(`${API}/movies/${movie.id}`,
+            {
+              method: "PUT",
+              body: JSON.stringify(newMovie),
+              headers: {
+                "Content-Type": "application/json"
+              },
+            })
+            .then((res) => res.json())
+            .then(() => navigate(`/movies`));
           // let temp_movielist = movie;
           // temp_movielist = newMovie
           // navigate(`/movies`);

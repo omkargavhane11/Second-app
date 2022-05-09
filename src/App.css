@@ -42,7 +42,8 @@
 
 /* toggle button - MODE */
 .toggle{
-  padding-left:150px;
+  /* padding-left:150px; */
+  margin-left: auto !important;
 }
 
 /* --- ADD MOVIE --- */

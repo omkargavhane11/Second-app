@@ -3,7 +3,7 @@ import "./App.css";
 import "./Movie.css";
 import { Addcolor } from "./Colorbox";
 import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import { MovieList } from "./MovieList";
 import { Home } from "./Home";
 import { Notfoundpage } from "./Notfoundpage";
@@ -18,7 +18,7 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
 import Paper from '@mui/material/Paper';
-import {API} from "./global"
+import { API } from "./global"
 import { BasicForm } from "./BasicForm";
 
 
@@ -103,11 +103,11 @@ export default function App() {
 
   const [movielist, setMovieList] = useState([]);
 
- useEffect(() =>{
-  fetch(`${API}/movies`)
-  .then((res) => res.json())
-  .then((data) => setMovieList(data));
- } , [])
+  useEffect(() => {
+    fetch(`${API}/movies`)
+      .then((res) => res.json())
+      .then((data) => setMovieList(data));
+  }, [])
 
 
   const navigate = useNavigate();
@@ -133,16 +133,16 @@ export default function App() {
             <Routes >
               <Route path="/" element={<Home />} />
               <Route path="/movies" element={<MovieList />} />
-              <Route path="/movies/:id" element={<MovieDetails  />} />
-              <Route path="/movies/add" element={<Add_Movie  />} />
-              <Route path="/movies/edit/:id" element={<Edit_Movie  />} />
+              <Route path="/movies/:id" element={<MovieDetails />} />
+              <Route path="/movies/add" element={<Add_Movie />} />
+              <Route path="/movies/edit/:id" element={<Edit_Movie />} />
               <Route path="/colorbox" element={<Addcolor />} />
               <Route path="*" element={<Navigate replace to="/404" />} />
               <Route path="/404" element={<Notfoundpage />} />
               <Route path="/basicform" element={<BasicForm />} />
               <Route path="/films" element={<Navigate replace to="/movies" />} />
             </Routes>
-          </div>  
+          </div>
         </div>
       </Paper>
     </ThemeProvider>
