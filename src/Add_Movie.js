@@ -42,7 +42,7 @@ export function Add_Movie() {
         "Content-Type": "application/json",
       },
     }).then((data) => data.json())
-      .then(() => { navigate("/movies") });
+      .then(() => navigate("/movies"));
   }
 
   return (
