@@ -1,21 +1,21 @@
 import { useParams, useNavigate } from "react-router-dom";
 import Button from '@mui/material/Button';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
-import { useState,useEffect } from "react";
-import {API} from "./global"
+import { useState, useEffect } from "react";
+import { API } from "./global"
 
 export function MovieDetails() {
 
   const [movie, setMovie] = useState({});
 
-  useEffect(() =>{
-   fetch(`${API}/movies/${id}`,{method:"GET"})
-   .then((res) => res.json())
-   .then((dat) => setMovie(dat));
-  } , [])
+  useEffect(() => {
+    fetch(`${API}/movies/${id}`, { method: "GET" })
+      .then((res) => res.json())
+      .then((dat) => setMovie(dat));
+  }, [])
 
   const { id } = useParams();
- 
+
 
   // console.log(movie);
   const navigate = useNavigate();

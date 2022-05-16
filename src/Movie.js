@@ -79,8 +79,8 @@ export function Movie({ id, movie }) {
               {/* deleting data when using API data */}
               <IconButton
                 onClick={() => {
-                  fetch(`${API}/movies/${id}`,{method: "DELETE"}).then(() => navigate("/movies"))
-                 
+                  fetch(`${API}/movies/${id}`, { method: "DELETE" }).then(() => navigate("/movies"))
+
                 }}
                 aria-label="delete" variant="standard" color="error">
                 <DeleteIcon />
